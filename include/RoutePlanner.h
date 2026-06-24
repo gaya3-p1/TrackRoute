@@ -2,9 +2,9 @@
 #include "RailwaySystem.h"
 #include <string>
 #include <vector>
-
+ 
 using namespace std;
-
+ 
 struct RouteSegment {
     int trainId;
     string trainName;
@@ -12,14 +12,16 @@ struct RouteSegment {
     string to;
     string depart;
     string arrive;
+    int travelMinutes;
+    int waitMinutes;
 };
-
+ 
 struct RouteResult {
     int totalMinutes;
     int changes;
     vector<RouteSegment> segments;
 };
-
+ 
 class RoutePlanner {
     public:
         RoutePlanner(const RailwaySystem& system);

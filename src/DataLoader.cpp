@@ -2,9 +2,14 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-
+#include <algorithm>
+ 
 using namespace std;
-
+ 
+static void stripCR(string& s) {
+    s.erase(remove(s.begin(), s.end(), '\r'), s.end());
+}
+ 
 vector<Train> DataLoader::loadCSV(const string& filename) {
     vector<Train> trains;
     ifstream file(filename);
@@ -12,10 +17,10 @@ vector<Train> DataLoader::loadCSV(const string& filename) {
         cerr << "Error: Cannot open file " << filename << "\n";
         return trains;
     }
-
+ 
     string line;
     unordered_map<int, Train> trainMap;
-
+ 
     getline(file, line);
     while (getline(file, line)) {
         stringstream ss(line);
@@ -25,18 +30,19 @@ vector<Train> DataLoader::loadCSV(const string& filename) {
         getline(ss, station, ',');
         getline(ss, arrival, ',');
         getline(ss, departure, ',');
-
-        int id = std::stoi(idStr);
+ 
+        stripCR(idStr); stripCR(name); stripCR(station);
+        stripCR(arrival); stripCR(departure);
+ 
+        int id = stoi(idStr);
         TrainStop stop{station, arrival, departure};
-
-        if (trainMap.find(id) == trainMap.end()) {
+ 
+        if (trainMap.find(id) == trainMap.end())
             trainMap[id] = Train{id, name, {}};
-        }
         trainMap[id].stops.push_back(stop);
     }
-
-    for (auto& [id, train] : trainMap) {
+ 
+    for (auto& [id, train] : trainMap)
         trains.push_back(train);
-    }
     return trains;
 }
