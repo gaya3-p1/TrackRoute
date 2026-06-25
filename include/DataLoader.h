@@ -1,4 +1,6 @@
-#pragma once
+#ifndef DATALOADER_H
+#define DATALOADER_H
+
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -6,18 +8,20 @@
 using namespace std;
 
 struct TrainStop {
-    string station;
-    string arrival;
-    string departure;
+    std::string station;
+    std::string arrival;
+    std::string departure;
 };
 
 struct Train {
     int id;
-    string name;
-    vector<TrainStop> stops;
+    std::string name;
+    std::vector<TrainStop> stops;
 };
 
 class DataLoader {
 public:
-    static vector<Train> loadCSV(const string& filename);
+    static std::vector<Train> loadCSV(const std::string& filename);
 };
+
+#endif

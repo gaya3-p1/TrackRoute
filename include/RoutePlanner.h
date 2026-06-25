@@ -1,17 +1,18 @@
-#pragma once
+#ifndef ROUTEPLANNER_H
+#define ROUTEPLANNER_H
+
 #include "RailwaySystem.h"
 #include <string>
 #include <vector>
  
-using namespace std;
  
 struct RouteSegment {
     int trainId;
-    string trainName;
-    string from;
-    string to;
-    string depart;
-    string arrive;
+    std::string trainName;
+    std::string from;
+    std::string to;
+    std::string depart;
+    std::string arrive;
     int travelMinutes;
     int waitMinutes;
 };
@@ -19,13 +20,15 @@ struct RouteSegment {
 struct RouteResult {
     int totalMinutes;
     int changes;
-    vector<RouteSegment> segments;
+    std::vector<RouteSegment> segments;
 };
  
 class RoutePlanner {
     public:
         RoutePlanner(const RailwaySystem& system);
-        RouteResult findShortestRoute(const string& source, const string& destination);
+        RouteResult findShortestRoute(const std::string& source, const string& destination);
     private:
         const RailwaySystem& railway;
 };
+
+#endif

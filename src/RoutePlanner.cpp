@@ -7,28 +7,29 @@
  
 using namespace std;
 using namespace Utils;
- 
-RoutePlanner::RoutePlanner(const RailwaySystem& system) : railway(system) {}
- 
-RouteResult RoutePlanner::findShortestRoute(const string& source, const string& destination) {
+
+namespace {
     struct State {
         string station;
         int elapsed;
         int arrivalClock; 
         bool operator>(const State& other) const { return elapsed > other.elapsed; }
     };
+}
+RoutePlanner::RoutePlanner(const RailwaySystem& system) : railway(system) {}
  
+RouteResult RoutePlanner::findShortestRoute(const string& source, const string& destination) {
     priority_queue<State, vector<State>, greater<>> pq;
     unordered_map<string, int> dist;
  
     struct EdgeInfo {
         string prevStation;
-        int    trainId;
+        int trainId;
         string trainName;
         string depart;
         string arrive;
-        int    travelMinutes;
-        int    waitMinutes;
+        int travelMinutes;
+        int waitMinutes;
     };
     unordered_map<string, EdgeInfo> best;
  
@@ -40,12 +41,16 @@ RouteResult RoutePlanner::findShortestRoute(const string& source, const string& 
     pq.push({source, 0, 0});
  
     while (!pq.empty()) {
-        auto [station, elapsed, arrivalClock] = pq.top(); pq.pop();
+        State top = pq.top(); pq.pop();
+        string station = top.station;
+        int elapsed = top.elapsed;
+        int arrivalClock = top.arrivalClock;
+
         if (station == destination) break;
         if (elapsed > dist[station]) continue;
  
         for (const auto& train : railway.getTrains()) {
-            const auto& stops = train.stops;
+            const vector<TainStop> stops = train.stops;
 
             vector<int> cumDep(stops.size(), 0);
             vector<int> cumArr(stops.size(), 0);
@@ -108,7 +113,7 @@ RouteResult RoutePlanner::findShortestRoute(const string& source, const string& 
     vector<RouteSegment> segs;
     string at = destination;
     while (at != source) {
-        auto it = best.find(at);
+        unordered_map<string, EdgeInfo>::iteraror it = best.find(at);
         if (it == best.end()) break;
         const EdgeInfo& e = it->second;
         segs.push_back({e.trainId, e.trainName, e.prevStation, at,

@@ -20,7 +20,7 @@ vector<Train> DataLoader::loadCSV(const string& filename) {
  
     string line;
     unordered_map<int, Train> trainMap;
- 
+
     getline(file, line);
     while (getline(file, line)) {
         stringstream ss(line);
@@ -42,7 +42,8 @@ vector<Train> DataLoader::loadCSV(const string& filename) {
         trainMap[id].stops.push_back(stop);
     }
  
-    for (auto& [id, train] : trainMap)
+    for (unordered_map<int, Train>::iterator it = trainMap.begin(); it != trainMap.end(); ++it){
         trains.push_back(train);
+    }
     return trains;
 }

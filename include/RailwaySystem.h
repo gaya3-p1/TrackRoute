@@ -1,21 +1,24 @@
-#pragma once
+#ifndef RAILWAYSYSTEM_H
+#define RAILWAYSYSTEM_H
+
 #include "DataLoader.h"
 #include <unordered_map>
 #include <string>
 #include <vector>
 
-using namespace std;
 
 class RailwaySystem {
 public:
-    RailwaySystem(const vector<Train>& trains);
-    const vector<Train>& getTrains() const;
+    RailwaySystem(const std::vector<Train>& trains);
+    const std::vector<Train>& getTrains() const;
     const Train* findTrainById(int id) const;
-    const Train* findTrainByName(const string& name) const;
+    const Train* findTrainByName(const std::string& name) const;
     void printTimetable(int trainId) const;
-    vector<string> getStations() const;
+    std::vector<std::string> getStations() const;
 private:
-    vector<Train> trains;
-    unordered_map<int, Train> trainById;
-    unordered_map<string, Train> trainByName;
+    std::vector<Train> trains;
+    std::unordered_map<int, Train> trainById;
+    std::unordered_map<std::string, Train> trainByName;
 };
+
+#endif
