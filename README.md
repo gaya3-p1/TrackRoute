@@ -1,12 +1,11 @@
-<<<<<<< HEAD
-# midrail
-an easy way to find the earliest possible way to travel from two stations which doesn't have direct railway option.
+# Indian Railway Route Optimizer
+An easy way to find the earliest possible travel from two stations that don't have a direct railway option.
 
-I generate a csv file, consists of 400+ virtual trains which passing through 25 stations.
+There is a CSV file that consists of 400+ virtual trains passing through 25 stations.
 
 Available Stations:
-AHMEDABAD   AMRITSAR    BANGALORE   BHOPAL  BHUBANESWAR CHANDIGARH  CHENNAI COIMBATORE  DELHI   GUWAHATI   HYDERABAD    INDORE  JAIPUR  KOCHI   KOLKATA            LUCKNOW   MADURAI MUMBAI    NAGPUR  PATNA PUNE    RANCHI    SURAT   VARANASI    VISAKHAPATNAM
+AHMEDABAD  AMRITSAR  BANGALORE  BHOPAL  BHUBANESWAR  CHANDIGARH  CHENNAI  COIMBATORE  DELHI  GUWAHATI  HYDERABAD  INDORE  JAIPUR  KOCHI  KOLKATA  LUCKNOW  MADURAI  MUMBAI  NAGPUR  PATNA  PUNE  RANCHI  SURAT  VARANASI  VISAKHAPATNAM
 
 -- to use the mid rails --
-make
+make  
 ./route_planner
