@@ -9,7 +9,7 @@
 
 
 namespace Utils {
-    int timeToMinutes(const atd::string& time);
+    int timeToMinutes(const std::string& time);
     std::string minutesToTime(int minutes);
     void printRoute(const std::vector<std::string>& stations);
 }

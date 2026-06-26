@@ -42,8 +42,9 @@ vector<Train> DataLoader::loadCSV(const string& filename) {
         trainMap[id].stops.push_back(stop);
     }
  
-    for (unordered_map<int, Train>::iterator it = trainMap.begin(); it != trainMap.end(); ++it){
-        trains.push_back(train);
+    for (auto& kv : trainMap) {
+    trains.push_back(kv.second);
     }
+
     return trains;
 }

@@ -50,7 +50,7 @@ RouteResult RoutePlanner::findShortestRoute(const string& source, const string& 
         if (elapsed > dist[station]) continue;
  
         for (const auto& train : railway.getTrains()) {
-            const vector<TainStop> stops = train.stops;
+            const vector<TrainStop> stops = train.stops;
 
             vector<int> cumDep(stops.size(), 0);
             vector<int> cumArr(stops.size(), 0);
@@ -113,7 +113,7 @@ RouteResult RoutePlanner::findShortestRoute(const string& source, const string& 
     vector<RouteSegment> segs;
     string at = destination;
     while (at != source) {
-        unordered_map<string, EdgeInfo>::iteraror it = best.find(at);
+        unordered_map<string, EdgeInfo>::iterator it = best.find(at);
         if (it == best.end()) break;
         const EdgeInfo& e = it->second;
         segs.push_back({e.trainId, e.trainName, e.prevStation, at,
