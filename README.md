@@ -67,8 +67,7 @@ Waiting time at the source is always 0. For connections, the wait is the gap bet
  
 ---
 
-## CLI
-
+## CLI   
 To use the TrackRoute Optimizer, run the following commands in your terminal:  
 
 ```bash
@@ -116,7 +115,21 @@ Destination station: SURAT
   Total time   : 16h 15m  (975 mins)
   Train changes: 2
 ```
----  
+Finding Train Timetable:   
+```
+Enter choice: 1
+Train ID: 12845
+Found :)
+NAME : Coromandel Express 3
+Timetable:
+Timetable for Coromandel Express 3 (ID: 12845):
+ - KOLKATA | Arr: -- | Dep: 13:00
+ - BHUBANESWAR | Arr: 18:00 | Dep: 18:15
+ - VISAKHAPATNAM | Arr: 23:15 | Dep: 23:30
+ - CHENNAI | Arr: 12:30 | Dep: --
+```
+---   
+
 ## Note
  
 - Station names are case-sensitive; use the exact names shown by option 4.
