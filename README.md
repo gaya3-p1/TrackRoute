@@ -105,7 +105,7 @@ Destination station: SURAT
   Leg 3: MUMBAI  -->  SURAT
   Train  : Saurashtra Express Ret 6 (ID: 109015)
   Departs: 10:00   Arrives: 12:30
-  Travel : 2h 30m ```
+  Travel : 2h 30m 
 
   ----------------------------------------
   Travel time  : 14h 30m
